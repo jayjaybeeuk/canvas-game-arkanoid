@@ -1,0 +1,2 @@
+export const GAME_TEST = 'GAME_TEST';
+export const GAME_ARKANOID_WEEK_ONE = 'GAME_ARKANOID_WEEK_ONE';
