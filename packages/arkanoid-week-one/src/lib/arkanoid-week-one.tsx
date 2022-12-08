@@ -8,12 +8,14 @@ const Arkanoid = (props: ArkanoidProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const draw = (ctx: any, width: number, height: number) => {
+    console.log('draw canvas');
     //Define canvas
-    let x = width / 2;
-    let y = height - 30;
+    let x: number;
+    let y: number;
     // Define ball
-    let dx = 2;
-    let dy = -2;
+    let dx: number;
+    let dy: number;
+
     const ballRadius = 10;
     // Define paddle
     const paddleHeight = 10;
@@ -23,6 +25,15 @@ const Arkanoid = (props: ArkanoidProps) => {
     // Define interactions
     let rightPressed = false;
     let leftPressed = false;
+
+    function initVars() {
+      //Define canvas
+      x = width / 2;
+      y = height - 30;
+      // Define ball
+      dx = 2;
+      dy = -2;
+    }
 
     function drawPaddle() {
       ctx.beginPath();
@@ -40,7 +51,22 @@ const Arkanoid = (props: ArkanoidProps) => {
       ctx.closePath();
     }
 
+    function getConfirmation() {
+      const retVal = confirm('GAME OVER: Do you want to continue ?');
+      if (retVal == true) {
+        initVars();
+        return true;
+      } else {
+        document.location.reload();
+        clearInterval(interval); // Needed for Chrome to end game
+        return false;
+      }
+    }
+
     function draw() {
+      //Console.log Ball position
+      console.log('Ball position ', dx, dy, x, y);
+
       // Clear canvas before redraw
       ctx.clearRect(0, 0, width, height);
 
@@ -56,9 +82,7 @@ const Arkanoid = (props: ArkanoidProps) => {
         if (x > paddleX && x < paddleX + paddleWidth) {
           dy = -dy;
         } else {
-          alert('GAME OVER');
-          document.location.reload();
-          clearInterval(interval); // Needed for Chrome to end game
+          getConfirmation();
         }
       }
 
@@ -99,6 +123,8 @@ const Arkanoid = (props: ArkanoidProps) => {
     // Draw the screen every 10 milliseconds
     // TODO: we can use react frame rendering here via useEffect
     const interval = setInterval(draw, 10);
+
+    initVars();
   };
 
   const canvas = canvasRef.current;

@@ -1,6 +1,7 @@
 import { ReactElement } from 'react';
 import { Arkanoid, CircleTest } from '@canvas-game-arkanoid/arkanoid-week-one';
 import { GAME_TEST, GAME_ARKANOID_WEEK_ONE } from '../constants';
+import { LandingLayout } from '../components/layouts';
 
 type Props = {
   gameType?: string;
@@ -23,9 +24,9 @@ const GamePage = (props: Props): ReactElement => {
   const { title, gameType, ...rest } = props;
 
   return (
-    <>
+    <LandingLayout>
       {title && <h1>{title}</h1>} {<GameType gameType={gameType} {...rest} />}
-    </>
+    </LandingLayout>
   );
 };
 
