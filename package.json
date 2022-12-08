@@ -58,6 +58,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-unused-imports": "^2.0.0",
     "jest": "28.1.1",
+    "jest-canvas-mock": "^2.4.0",
     "jest-environment-jsdom": "28.1.1",
     "nx": "15.2.4",
     "prettier": "^2.6.2",
