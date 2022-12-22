@@ -8,9 +8,15 @@
   },
   "include": [
     "**/*.ts",
-    "src/lib/__tests__/arkanoid-week-one.spec.tsx",
+    "src/lib/arkanoid-week-one.spec.tsx",
     "src/lib/arkanoid-week-one.tsx",
     "src/index.ts"
   ],
-  "exclude": ["jest.config.ts", "**/*.spec.ts", "**/*.test.ts"]
+  "exclude": [
+    "jest.config.ts",
+    "**/*.spec.ts",
+    "**/*.test.ts",
+    "**/*.spec.tsx",
+    "**/*.test.tsx"
+  ]
 }
