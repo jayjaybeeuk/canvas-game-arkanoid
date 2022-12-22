@@ -22,6 +22,6 @@ describe('App', () => {
       </BrowserRouter>
     );
 
-    expect(getByText(/Welcome game-arkanoid/gi)).toBeTruthy();
+    expect(getByText(/Circle Test/gi)).toBeTruthy();
   });
 });
