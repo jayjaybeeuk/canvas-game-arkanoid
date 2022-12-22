@@ -52,11 +52,14 @@ const Arkanoid = (props: ArkanoidProps) => {
     }
 
     function getConfirmation() {
+      console.log('Get Confirmation');
       const retVal = confirm('GAME OVER: Do you want to continue ?');
-      if (retVal == true) {
+      if (retVal) {
+        console.log('Get Confirmation - ok');
         initVars();
         return true;
       } else {
+        console.log('Get Confirmation - cancel');
         document.location.reload();
         clearInterval(interval); // Needed for Chrome to end game
         return false;
@@ -64,8 +67,7 @@ const Arkanoid = (props: ArkanoidProps) => {
     }
 
     function draw() {
-      //Console.log Ball position
-      console.log('Ball position ', dx, dy, x, y);
+      // console.log('Ball position ', dx, dy, x, y);
 
       // Clear canvas before redraw
       ctx.clearRect(0, 0, width, height);
@@ -82,6 +84,7 @@ const Arkanoid = (props: ArkanoidProps) => {
         if (x > paddleX && x < paddleX + paddleWidth) {
           dy = -dy;
         } else {
+          console.log('trigger getConfirmation', x, y);
           getConfirmation();
         }
       }
@@ -124,20 +127,22 @@ const Arkanoid = (props: ArkanoidProps) => {
     // TODO: we can use react frame rendering here via useEffect
     const interval = setInterval(draw, 10);
 
+    console.log('init vars');
     initVars();
   };
 
-  const canvas = canvasRef.current;
-
   useEffect(() => {
+    const canvas = canvasRef.current;
+    console.log('canvas - check');
     // 👉️ ref could be null here
     if (canvas != null) {
+      console.log('canvas - not null');
       const context = canvas.getContext('2d');
       const height = canvas.height;
       const width = canvas.width;
       draw(context, width, height);
     }
-  }, [canvas]);
+  }, [canvasRef]);
 
   return (
     <>
