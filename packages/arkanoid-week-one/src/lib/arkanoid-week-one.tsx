@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { CanvasWrapper } from './canvas.style';
 
 type ArkanoidProps = {
   title?: string;
@@ -145,9 +146,9 @@ const Arkanoid = (props: ArkanoidProps) => {
   }, [canvasRef]);
 
   return (
-    <>
+    <CanvasWrapper>
       <canvas ref={canvasRef} {...props} width="480" height="320" />
-    </>
+    </CanvasWrapper>
   );
 };
 
