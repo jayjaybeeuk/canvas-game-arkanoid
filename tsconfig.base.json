@@ -15,8 +15,11 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@canvas-game-arkanoid/arkanoid-week-one": [
-        "packages/arkanoid-week-one/src/index.ts"
+      "@canvas-game-arkanoid/arkanoid-part-one": [
+        "libs/arkanoid-part-one/src/index.ts"
+      ],
+      "@canvas-game-arkanoid/arkanoid-part-two": [
+        "libs/arkanoid-part-two/src/index.ts"
       ]
     }
   },
