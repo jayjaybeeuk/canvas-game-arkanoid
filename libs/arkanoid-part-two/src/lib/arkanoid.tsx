@@ -51,6 +51,8 @@ const Arkanoid = (props: ArkanoidProps) => {
       }
     }
 
+    let score = 0;
+
     function initVars() {
       //Define canvas
       x = width / 2;
@@ -108,10 +110,20 @@ const Arkanoid = (props: ArkanoidProps) => {
               dy = -dy;
               // Remove the brick
               b.status = 0;
+              score++;
+              if (score === brickRowCount * brickColumnCount) {
+                getGameWin();
+              }
             }
           }
         }
       }
+    }
+
+    function drawScore() {
+      ctx.font = '16px Arial';
+      ctx.fillStyle = '#0095DD';
+      ctx.fillText(`Score: ${score}`, 8, 20);
     }
 
     function getConfirmation() {
@@ -127,6 +139,12 @@ const Arkanoid = (props: ArkanoidProps) => {
         clearInterval(interval); // Needed for Chrome to end game
         return false;
       }
+    }
+
+    function getGameWin() {
+      alert('YOU WIN, CONGRATULATIONS!');
+      document.location.reload();
+      clearInterval(interval); // Needed for Chrome to end game
     }
 
     function draw() {
@@ -162,6 +180,7 @@ const Arkanoid = (props: ArkanoidProps) => {
       drawBall();
       drawBricks();
       drawPaddle();
+      drawScore();
       collisionDetection();
 
       //Move ball
