@@ -208,7 +208,6 @@ const Arkanoid = (props: ArkanoidProps) => {
     document.addEventListener('keyup', keyUpHandler, false);
 
     // Draw the screen every 10 milliseconds
-    // TODO: we can use react frame rendering here via useEffect
     const interval = setInterval(draw, 10);
 
     console.log('init vars');
@@ -220,7 +219,7 @@ const Arkanoid = (props: ArkanoidProps) => {
     console.log('canvas - check');
     // 👉️ ref could be null here
     if (canvas != null) {
-      console.log('canvas - not null');
+      console.log('canvas - not null 2');
       const context = canvas.getContext('2d');
       const height = canvas.height;
       const width = canvas.width;

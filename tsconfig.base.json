@@ -8,6 +8,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
+    "noImplicitAny": true,
     "target": "es2015",
     "module": "esnext",
     "lib": ["es2017", "dom"],
@@ -20,6 +21,9 @@
       ],
       "@canvas-game-arkanoid/arkanoid-part-two": [
         "libs/arkanoid-part-two/src/index.ts"
+      ],
+      "@canvas-game-arkanoid/arkanoid-part-three": [
+        "libs/arkanoid-part-three/src/index.ts"
       ]
     }
   },

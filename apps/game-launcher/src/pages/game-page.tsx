@@ -4,10 +4,12 @@ import {
   CircleTest,
 } from '@canvas-game-arkanoid/arkanoid-part-one';
 import { Arkanoid as ArkanoidPartTwo } from '@canvas-game-arkanoid/arkanoid-part-two';
+import { Arkanoid as ArkanoidPartThree } from '@canvas-game-arkanoid/arkanoid-part-three';
 import {
   GAME_TEST,
   GAME_ARKANOID_PART_ONE,
   GAME_ARKANOID_PART_TWO,
+  GAME_ARKANOID_PART_THREE,
 } from '../constants';
 import { LandingLayout } from '../components/layouts';
 
@@ -23,6 +25,8 @@ const GameType = (props: Props): ReactElement => {
       return <ArkanoidPartOne {...rest} />;
     case GAME_ARKANOID_PART_TWO:
       return <ArkanoidPartTwo {...rest} />;
+    case GAME_ARKANOID_PART_THREE:
+      return <ArkanoidPartThree {...rest} />;
     case GAME_TEST:
       return <CircleTest {...rest} />;
     default:
@@ -32,7 +36,6 @@ const GameType = (props: Props): ReactElement => {
 
 const GamePage = (props: Props): ReactElement => {
   const { title, gameType, ...rest } = props;
-
   return (
     <LandingLayout>
       {title && <h1>{title}</h1>} {<GameType gameType={gameType} {...rest} />}
