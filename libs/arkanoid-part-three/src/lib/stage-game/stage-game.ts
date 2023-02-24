@@ -8,6 +8,9 @@ const StageGame = (
   height: number
 ) => {
   console.log('draw canvas');
+  //global
+  let isPaused = false;
+
   //Define canvas
   let x: number;
   let y: number;
@@ -75,10 +78,6 @@ const StageGame = (
     ctx.fillStyle = colours.blue;
     ctx.fill();
     ctx.closePath();
-  }
-
-  function chooseBrickColour() {
-    return '#' + Math.floor(Math.random() * 16777215).toString(16);
   }
 
   function drawBricks() {
@@ -169,6 +168,7 @@ const StageGame = (
         dy = -dy;
       } else {
         console.log('trigger getConfirmation', x, y);
+        isPaused = true;
         getConfirmation();
       }
     }
@@ -219,7 +219,11 @@ const StageGame = (
   document.addEventListener('mousemove', mouseMoveHandler, false);
 
   // Draw the screen every 10 milliseconds
-  const interval = setInterval(draw, 10);
+  const interval = setInterval(function () {
+    if (!isPaused) {
+      draw();
+    }
+  }, 10);
 
   console.log('init vars');
   initVars();
