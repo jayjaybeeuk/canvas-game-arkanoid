@@ -33,7 +33,7 @@ class Game {
   }
 
   startGame(): void {
-    StageGame(this.ctx, this.width, this.height);
+    StageGame(this.canvas, this.ctx, this.width, this.height);
   }
 
   clearTitle(): void {

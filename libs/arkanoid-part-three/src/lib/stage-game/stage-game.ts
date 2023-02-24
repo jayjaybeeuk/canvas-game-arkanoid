@@ -1,4 +1,5 @@
 const StageGame = (
+  canvas: HTMLCanvasElement,
   ctx: CanvasRenderingContext2D,
   width: number,
   height: number
@@ -199,8 +200,16 @@ const StageGame = (
     }
   }
 
+  function mouseMoveHandler(e: { clientX: number }) {
+    const relativeX = e.clientX - canvas.offsetLeft;
+    if (relativeX > 0 && relativeX < canvas.width) {
+      paddleX = relativeX - paddleWidth / 2;
+    }
+  }
+
   document.addEventListener('keydown', keyDownHandler, false);
   document.addEventListener('keyup', keyUpHandler, false);
+  document.addEventListener('mousemove', mouseMoveHandler, false);
 
   // Draw the screen every 10 milliseconds
   const interval = setInterval(draw, 10);
