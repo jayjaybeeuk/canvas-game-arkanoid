@@ -1,3 +1,6 @@
+import { colours } from './colours';
+import { randomProperty } from './utils';
+
 const StageGame = (
   canvas: HTMLCanvasElement,
   ctx: CanvasRenderingContext2D,
@@ -43,7 +46,7 @@ const StageGame = (
   for (let c = 0; c < brickColumnCount; c++) {
     bricks[c] = [];
     for (let r = 0; r < brickRowCount; r++) {
-      bricks[c][r] = { x: 0, y: 0, status: 1 };
+      bricks[c][r] = { x: 0, y: 0, status: 1, colour: randomProperty(colours) };
     }
   }
 
@@ -61,7 +64,7 @@ const StageGame = (
   function drawPaddle() {
     ctx.beginPath();
     ctx.rect(paddleX, height - paddleHeight, paddleWidth, paddleHeight);
-    ctx.fillStyle = '#0095DD';
+    ctx.fillStyle = colours.blue;
     ctx.fill();
     ctx.closePath();
   }
@@ -69,9 +72,13 @@ const StageGame = (
   function drawBall() {
     ctx.beginPath();
     ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
-    ctx.fillStyle = '#0095DD';
+    ctx.fillStyle = colours.blue;
     ctx.fill();
     ctx.closePath();
+  }
+
+  function chooseBrickColour() {
+    return '#' + Math.floor(Math.random() * 16777215).toString(16);
   }
 
   function drawBricks() {
@@ -84,7 +91,7 @@ const StageGame = (
           bricks[c][r].y = brickY;
           ctx.beginPath();
           ctx.rect(brickX, brickY, brickWidth, brickHeight);
-          ctx.fillStyle = '#0095DD';
+          ctx.fillStyle = bricks[c][r].colour;
           ctx.fill();
           ctx.closePath();
         }
@@ -118,7 +125,7 @@ const StageGame = (
 
   function drawScore() {
     ctx.font = '16px Arial';
-    ctx.fillStyle = '#0095DD';
+    ctx.fillStyle = colours.blue;
     ctx.fillText(`Score: ${score}`, 8, 20);
   }
 
