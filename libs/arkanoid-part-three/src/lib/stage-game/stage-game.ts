@@ -131,6 +131,7 @@ const StageGame = (
   function getConfirmation() {
     console.log('Get Confirmation');
     const retVal = confirm('GAME OVER: Do you want to continue ?');
+    isPaused = false;
     if (retVal) {
       console.log('Get Confirmation - ok');
       initVars();
