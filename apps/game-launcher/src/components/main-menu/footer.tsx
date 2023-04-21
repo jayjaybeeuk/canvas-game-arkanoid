@@ -27,7 +27,7 @@ const Footer = (): ReactElement => (
         <Link to="/">Test</Link>
         <Link to="/arkanoid-part-1">Arkanoid Week 1</Link>
         <Link to="/arkanoid-part-2">Arkanoid Week 2</Link>
-        <Link to="/arkanoid-part-3">Arkanoid Week 3</Link>
+        <Link to="/arkanoid-part-3">arkanoid Week 3r</Link>
         <Link to="/arkanoid-part-4">Arkanoid Week 4</Link>
       </Stack>
       <Text>© 2022 Footer</Text>

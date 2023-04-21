@@ -24,6 +24,9 @@
       ],
       "@canvas-game-arkanoid/arkanoid-part-three": [
         "libs/arkanoid-part-three/src/index.ts"
+      ],
+      "@canvas-game-arkanoid/arkanoid-part-four": [
+        "libs/arkanoid-part-four/src/index.ts"
       ]
     }
   },

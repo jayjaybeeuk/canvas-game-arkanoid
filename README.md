@@ -138,30 +138,30 @@ _For more examples in the future, please refer to the [Documentation](https://ex
 ### Build pipeline
 
 - [ ] Add a build function to create a distributable for the app
-- [ ] Publish the Arkanoid component as a seperate NPM module
+- [ ] Publish the Arkanoid component as a separate NPM module
 
 ### Arkanoid game mechanics
 
-- [ ] Add ball return off of bat functinality
+- [ ] Add ball return off of bat functionality
 - [ ] Improve ball mechanics
 
 ### Arkanoid game features
 
-- [ ] Add highscore
+- [ ] Add high score
 - [ ] Add title screen
 
 ### Arkanoid game architecture
 
 - [ ] Refactor the canvas context to its own component
-- [ ] Convert the game engien to use React's frame rendering (needs a closer look at what the most efficient option is)
+- [ ] Convert the game engine to use React's frame rendering (needs a closer look at what the most efficient option is)
 
 ### API
 
-- [ ] Add a backend API to hold highscore function
+- [ ] Add a backend API to hold high score function
 
 ### Other
 
-- [ ] Add more tests; Unit, integretion and E2E
+- [ ] Add more tests; Unit, integration and E2E
 
 See the [open issues](https://github.com/jayjaybeeuk/canvas-game-arkanoid/issues) for a full list of proposed features (and known issues).
 

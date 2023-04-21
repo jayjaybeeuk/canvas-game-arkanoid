@@ -9,6 +9,7 @@ import {
   GAME_ARKANOID_PART_ONE,
   GAME_ARKANOID_PART_TWO,
   GAME_ARKANOID_PART_THREE,
+  GAME_ARKANOID_PART_FOUR,
 } from '../constants';
 
 const StyledApp = styled.div`
@@ -40,6 +41,12 @@ export function App() {
             path="/arkanoid-part-3"
             element={
               <GamePage title="Arkanoid" gameType={GAME_ARKANOID_PART_THREE} />
+            }
+          />
+          <Route
+            path="/arkanoid-part-4"
+            element={
+              <GamePage title="Arkanoid" gameType={GAME_ARKANOID_PART_FOUR} />
             }
           />
         </Routes>

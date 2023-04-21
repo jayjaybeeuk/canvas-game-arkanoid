@@ -18,6 +18,9 @@ const MainMenu = (): ReactElement => (
         <Tab>
           <Link to="/arkanoid-part-3">Arkanoid Week 3</Link>
         </Tab>
+        <Tab>
+          <Link to="/arkanoid-part-4">Arkanoid Week 4</Link>
+        </Tab>
       </TabList>
     </Tabs>
   </Box>
