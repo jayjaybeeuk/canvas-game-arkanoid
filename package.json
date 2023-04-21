@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "postinstall": "husky install && commitizen init cz-conventional-changelog --yarn --dev --exact",
     "start": "nx serve",
     "build": "nx build",
     "test": "nx test",
@@ -48,6 +49,7 @@
     "babel-jest": "28.1.1",
     "babel-plugin-styled-components": "1.10.7",
     "cypress": "^11.0.0",
+    "cz-conventional-changelog": "^3.3.0",
     "eslint": "~8.15.0",
     "eslint-config-prettier": "8.1.0",
     "eslint-plugin-cypress": "^2.10.3",
@@ -57,9 +59,11 @@
     "eslint-plugin-react": "7.31.8",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-unused-imports": "^2.0.0",
+    "husky": "^8.0.3",
     "jest": "28.1.1",
     "jest-canvas-mock": "^2.4.0",
     "jest-environment-jsdom": "28.1.1",
+    "lint-staged": "^13.2.1",
     "nx": "15.2.4",
     "prettier": "^2.6.2",
     "react-test-renderer": "18.2.0",
@@ -80,5 +84,19 @@
     "regenerator-runtime": "0.13.7",
     "styled-components": "5.3.5",
     "tslib": "^2.3.0"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --config ./.prettierrc.js --write"
+    ],
+    "**/*.{css,scss,md,html,json}": [
+      "prettier --config ./.prettierrc.js --write"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
