@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "postinstall": "husky install && commitizen init cz-conventional-changelog --yarn --dev --exact",
+    "postinstall": "husky install",
+    "commitzen": "commitizen init cz-conventional-changelog --yarn --dev --exact",
     "start": "nx serve",
     "build": "nx build",
     "test": "nx test",
