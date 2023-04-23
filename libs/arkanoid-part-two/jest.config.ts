@@ -1,6 +1,6 @@
 /* eslint-disable */
 export default {
-  displayName: 'arkanoid-part-three',
+  displayName: 'arkanoid-part-two',
   preset: '../../jest.preset.js',
   globals: {
     'ts-jest': {
@@ -11,5 +11,5 @@ export default {
     '^.+\\.[tj]s$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: '../../coverage/libs/arkanoid-part-three',
+  coverageDirectory: '../../coverage/libs/arkanoid-part-two',
 };

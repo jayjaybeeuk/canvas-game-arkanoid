@@ -1,31 +1,31 @@
 {
-  "name": "arkanoid-part-three",
+  "name": "arkanoid-part-two",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/arkanoid-part-three/src",
+  "sourceRoot": "libs/arkanoid-part-two/src",
   "projectType": "library",
   "targets": {
     "build": {
       "executor": "@nrwl/js:tsc",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/libs/arkanoid-part-three",
-        "main": "libs/arkanoid-part-three/src/index.tsx",
-        "tsConfig": "libs/arkanoid-part-three/tsconfig.lib.json",
-        "assets": ["libs/arkanoid-part-three/*.md"]
+        "outputPath": "dist/libs/arkanoid-part-two",
+        "main": "libs/arkanoid-part-two/src/index.tsx",
+        "tsConfig": "libs/arkanoid-part-two/tsconfig.lib.json",
+        "assets": ["libs/arkanoid-part-two/*.md"]
       }
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["libs/arkanoid-part-three/**/*.tsx"]
+        "lintFilePatterns": ["libs/arkanoid-part-two/**/*.tsx"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "libs/arkanoid-part-three/jest.config.ts",
+        "jestConfig": "libs/arkanoid-part-two/jest.config.ts",
         "passWithNoTests": true
       }
     }
