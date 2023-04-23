@@ -4,7 +4,6 @@
   "license": "MIT",
   "scripts": {
     "postinstall": "husky install",
-    "commitzen": "commitizen init cz-conventional-changelog --yarn --dev --exact",
     "start": "nx serve",
     "build": "nx build",
     "test": "nx test",
@@ -27,6 +26,8 @@
   },
   "private": true,
   "devDependencies": {
+    "@commitlint/cli": "^17.6.1",
+    "@commitlint/config-conventional": "^17.6.1",
     "@nrwl/cli": "15.2.4",
     "@nrwl/cypress": "15.2.4",
     "@nrwl/eslint-plugin-nx": "15.2.4",
@@ -50,7 +51,6 @@
     "babel-jest": "28.1.1",
     "babel-plugin-styled-components": "1.10.7",
     "cypress": "^11.0.0",
-    "cz-conventional-changelog": "^3.3.0",
     "eslint": "~8.15.0",
     "eslint-config-prettier": "8.1.0",
     "eslint-plugin-cypress": "^2.10.3",
@@ -94,10 +94,5 @@
     "**/*.{css,scss,md,html,json}": [
       "prettier --config ./.prettierrc.js --write"
     ]
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
   }
 }
