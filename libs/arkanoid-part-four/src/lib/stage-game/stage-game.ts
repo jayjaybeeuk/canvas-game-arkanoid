@@ -1,4 +1,4 @@
-import { colours } from './colours';
+import { colours, brickColours } from './colours';
 import { randomProperty } from './utils';
 
 const StageGame = (
@@ -49,7 +49,12 @@ const StageGame = (
   for (let c = 0; c < brickColumnCount; c++) {
     bricks[c] = [];
     for (let r = 0; r < brickRowCount; r++) {
-      bricks[c][r] = { x: 0, y: 0, status: 1, colour: randomProperty(colours) };
+      bricks[c][r] = {
+        x: 0,
+        y: 0,
+        status: 1,
+        colour: randomProperty(brickColours),
+      };
     }
   }
 
@@ -130,8 +135,30 @@ const StageGame = (
 
   function getConfirmation() {
     console.log('Get Confirmation');
-    const retVal = confirm('GAME OVER: Do you want to continue ?');
+    ctx.beginPath();
+
+    ctx.globalCompositeOperation = 'destination-over';
+
+    //Write text
+    ctx.font = '16px Arial';
+    ctx.fillStyle = colours.black;
+    ctx.fillText(`You died`, 100, 80);
+    ctx.fillText(`Click to restart`, 100, 180);
+
+    // Write box
+    ctx.fillStyle = colours.white;
+    ctx.fillRect(80, 60, 320, 180);
+
+    ctx.closePath();
+
+    //const retVal = confirm('GAME OVER: Do you want to continue ?');
+
+    const retVal = true; //temp - we need to set this via a button click
+
+    // Pause game
     isPaused = false;
+    clearInterval(interval);
+
     if (retVal) {
       console.log('Get Confirmation - ok');
       initVars();
