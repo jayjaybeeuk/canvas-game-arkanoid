@@ -1,5 +1,5 @@
 import React from 'react';
-import { Arkanoid } from './arkanoid';
+import { Arkanoid } from '../arkanoid';
 
 describe('arkanoidWeekOne', () => {
   it('should work', () => {

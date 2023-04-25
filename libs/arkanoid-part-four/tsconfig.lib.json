@@ -8,7 +8,7 @@
   },
   "include": [
     "**/*.ts",
-    "src/lib/arkanoid.spec.tsx",
+    "src/lib/__tests__/arkanoid.spec.tsx",
     "src/lib/arkanoid.tsx",
     "src/index.ts"
   ],
