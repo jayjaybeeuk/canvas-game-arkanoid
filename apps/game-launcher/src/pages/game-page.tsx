@@ -1,4 +1,5 @@
 import { ReactElement } from 'react';
+import { Box } from '@chakra-ui/react';
 import {
   Arkanoid as ArkanoidPartOne,
   CircleTest,
@@ -42,7 +43,12 @@ const GamePage = (props: Props): ReactElement => {
   const { title, gameType, ...rest } = props;
   return (
     <LandingLayout>
-      {title && <h1>{title}</h1>} {<GameType gameType={gameType} {...rest} />}
+      {title && <h1>{title}</h1>}{' '}
+      {
+        <Box width={'482px'} m={'2'}>
+          <GameType gameType={gameType} {...rest} />
+        </Box>
+      }
     </LandingLayout>
   );
 };

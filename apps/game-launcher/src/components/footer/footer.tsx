@@ -6,7 +6,6 @@ import {
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
 
 const Footer = (): ReactElement => (
   <Box
@@ -23,14 +22,10 @@ const Footer = (): ReactElement => (
       justify={{ base: 'center', md: 'space-between' }}
       align={{ base: 'center', md: 'center' }}
     >
+      <Text>&nbsp;</Text>
       <Stack direction={'row'} spacing={6}>
-        <Link to="/">Test</Link>
-        <Link to="/arkanoid-part-1">Arkanoid Week 1</Link>
-        <Link to="/arkanoid-part-2">Arkanoid Week 2</Link>
-        <Link to="/arkanoid-part-3">Arkanoid Week 3</Link>
-        <Link to="/arkanoid-part-4">Arkanoid Week 4</Link>
+        <Text>© 2022 Footer</Text>
       </Stack>
-      <Text>© 2022 Footer</Text>
     </Container>
   </Box>
 );
