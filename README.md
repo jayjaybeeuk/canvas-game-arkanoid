@@ -36,7 +36,7 @@
 <h3 align="center">canvas-game-arkanoid</h3>
 
   <p align="center">
-    A simple canvas game to be worked on through the ages. Will it ever get finished? Who knows!
+    A simple canvas game to be worked on through the ages. Will it ever get finished? Who knows! This is a test!
     <br />
     <a href="https://github.com/jayjaybeeuk/canvas-game-arkanoid"><strong>Explore the docs »</strong></a>
     <br />
