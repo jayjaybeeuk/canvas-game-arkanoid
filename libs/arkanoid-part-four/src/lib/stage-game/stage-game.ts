@@ -38,14 +38,15 @@ const StageGame = (
   const brickOffsetLeft = 30;
 
   //Brick field
-  type Bricks = any;
-  // | {
-  //     x: number;
-  //     y: number;
-  //     status: number;
-  //   }
-  // | number;
-  const bricks: Bricks[][] = [];
+  interface Brick {
+    x: number;
+    y: number;
+    status: number;
+    colour: string;
+  }
+
+  type Bricks = Brick[][];
+  const bricks: Bricks = [];
   for (let c = 0; c < brickColumnCount; c++) {
     bricks[c] = [];
     for (let r = 0; r < brickRowCount; r++) {
@@ -133,26 +134,50 @@ const StageGame = (
     ctx.fillText(`Score: ${score}`, 8, 20);
   }
 
-  function getConfirmation() {
-    console.log('Get Confirmation');
+  function drawText(text: string, x: number, y: number) {
+    const textWidth = ctx.measureText(text).width;
+    ctx.fillText(text, x - textWidth / 2, y);
+  }
+
+  function drawGameOver() {
     ctx.beginPath();
 
     ctx.globalCompositeOperation = 'destination-over';
 
     //Write text
-    ctx.font = '16px Arial';
+    ctx.font = '32px Arial';
     ctx.fillStyle = colours.black;
-    ctx.fillText(`You died`, 100, 80);
-    ctx.fillText(`Click to restart`, 100, 180);
+    drawText('You died', width / 2, height / 2 - 20);
+    drawText(`Click to restart`, width / 2, height / 2 + 20);
 
-    // Write box
+    // outline the box
+    ctx.strokeStyle = colours.red;
+    ctx.lineWidth = 2;
+    ctx.strokeRect(80, 60, 320, 180);
+
+    // // Write box with drop shadow
+    // ctx.shadowColor = colours.black;
+    // ctx.shadowBlur = 10;
+    // ctx.shadowOffsetX = 5;
+    // ctx.shadowOffsetY = 5;
+
+    // fill the box
     ctx.fillStyle = colours.white;
     ctx.fillRect(80, 60, 320, 180);
 
+    // // Reset the drop shadow
+    // ctx.shadowOffsetX = 0;
+    // ctx.shadowOffsetY = 0;
+    // ctx.shadowBlur = 0;
+    // ctx.shadowColor = 'rgba(0, 0, 0, 0)';
+
     ctx.closePath();
+  }
 
-    //const retVal = confirm('GAME OVER: Do you want to continue ?');
+  function getConfirmation(): boolean {
+    console.log('Get Confirmation');
 
+    drawGameOver();
     const retVal = true; //temp - we need to set this via a button click
 
     // Pause game
@@ -219,7 +244,7 @@ const StageGame = (
     y += dy;
   }
 
-  function keyDownHandler(e: { key: string }) {
+  function handleKeyDown(e: { key: string }) {
     if (e.key === 'Right' || e.key === 'ArrowRight') {
       rightPressed = true;
     } else if (e.key === 'Left' || e.key === 'ArrowLeft') {
@@ -227,7 +252,7 @@ const StageGame = (
     }
   }
 
-  function keyUpHandler(e: { key: string }) {
+  function handleKeyUp(e: { key: string }) {
     if (e.key === 'Right' || e.key === 'ArrowRight') {
       rightPressed = false;
     } else if (e.key === 'Left' || e.key === 'ArrowLeft') {
@@ -235,16 +260,23 @@ const StageGame = (
     }
   }
 
-  function mouseMoveHandler(e: { clientX: number }) {
+  function handleMouseMove(e: { clientX: number }) {
     const relativeX = e.clientX - canvas.offsetLeft;
     if (relativeX > 0 && relativeX < canvas.width) {
       paddleX = relativeX - paddleWidth / 2;
     }
   }
 
-  document.addEventListener('keydown', keyDownHandler, false);
-  document.addEventListener('keyup', keyUpHandler, false);
-  document.addEventListener('mousemove', mouseMoveHandler, false);
+  function handleOrientation(event: DeviceOrientationEvent) {
+    // Do something with the event data
+    console.log(event.alpha, event.beta, event.gamma);
+  }
+
+  // Add event listeners
+  window.addEventListener('deviceorientation', handleOrientation, true);
+  document.addEventListener('keydown', handleKeyDown, false);
+  document.addEventListener('keyup', handleKeyUp, false);
+  document.addEventListener('mousemove', handleMouseMove, false);
 
   // Draw the screen every 10 milliseconds
   const interval = setInterval(function () {
