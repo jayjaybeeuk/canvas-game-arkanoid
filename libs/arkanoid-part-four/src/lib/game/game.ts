@@ -22,10 +22,8 @@ class Game {
   }
 
   #init(): void {
-    this.canvas.addEventListener('click', () => {
-      this.clearTitle();
-      this.startGame();
-    });
+    this.startGame = this.startGame.bind(this);
+    this.canvas.addEventListener('click', this.startGame, true);
   }
 
   startTitle(): void {
@@ -33,6 +31,8 @@ class Game {
   }
 
   startGame(): void {
+    this.clearTitle();
+    this.canvas.removeEventListener('click', this.startGame, true);
     StageGame(this.canvas, this.ctx, this.width, this.height);
   }
 

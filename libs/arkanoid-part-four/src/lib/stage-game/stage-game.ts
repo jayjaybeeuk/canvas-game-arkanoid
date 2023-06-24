@@ -10,6 +10,7 @@ const StageGame = (
   console.log('draw canvas');
   //global
   let isPaused = false;
+  let canPause = false;
 
   //Define canvas
   let x: number;
@@ -59,7 +60,8 @@ const StageGame = (
     }
   }
 
-  let score = 0;
+  let score = 0,
+    lives = 3;
 
   function initVars() {
     //Define canvas
@@ -134,6 +136,12 @@ const StageGame = (
     ctx.fillText(`Score: ${score}`, 8, 20);
   }
 
+  function drawLives() {
+    ctx.font = '16px Arial';
+    ctx.fillStyle = colours.blue;
+    ctx.fillText(`Lives: ${lives}`, width - 65, 20);
+  }
+
   function drawText(text: string, x: number, y: number) {
     const textWidth = ctx.measureText(text).width;
     ctx.fillText(text, x - textWidth / 2, y);
@@ -177,19 +185,26 @@ const StageGame = (
   function getConfirmation(): boolean {
     console.log('Get Confirmation');
 
-    drawGameOver();
-    const retVal = true; //temp - we need to set this via a button click
+    let gameOver = false; //temp - we need to set this via a button click
+    // remove a life if not zero
+    if (lives > 1) {
+      lives--;
+    } else {
+      gameOver = true;
+    }
 
     // Pause game
-    isPaused = false;
-    clearInterval(interval);
+    canPause = true;
+    isPaused = true;
 
-    if (retVal) {
+    if (!gameOver) {
       console.log('Get Confirmation - ok');
+      drawGameOver();
       initVars();
       return true;
     } else {
       console.log('Get Confirmation - cancel');
+      drawGameOver();
       document.location.reload();
       clearInterval(interval); // Needed for Chrome to end game
       return false;
@@ -221,7 +236,6 @@ const StageGame = (
         dy = -dy;
       } else {
         console.log('trigger getConfirmation', x, y);
-        isPaused = true;
         getConfirmation();
       }
     }
@@ -237,6 +251,7 @@ const StageGame = (
     drawBricks();
     drawPaddle();
     drawScore();
+    drawLives();
     collisionDetection();
 
     //Move ball
@@ -272,11 +287,19 @@ const StageGame = (
     console.log(event.alpha, event.beta, event.gamma);
   }
 
+  function handleClick(e: MouseEvent) {
+    console.log('click', e);
+    if (canPause) {
+      isPaused = !isPaused;
+    }
+  }
+
   // Add event listeners
   window.addEventListener('deviceorientation', handleOrientation, true);
   document.addEventListener('keydown', handleKeyDown, false);
   document.addEventListener('keyup', handleKeyUp, false);
   document.addEventListener('mousemove', handleMouseMove, false);
+  document.addEventListener('click', handleClick, false);
 
   // Draw the screen every 10 milliseconds
   const interval = setInterval(function () {
