@@ -1,5 +1,6 @@
 import { colours, brickColours } from './colours';
 import { randomProperty } from './utils';
+import { Sounds } from './sounds';
 
 const StageGame = (
   canvas: HTMLCanvasElement,
@@ -117,6 +118,7 @@ const StageGame = (
             y > b.y &&
             y < b.y + brickHeight
           ) {
+            playSound(Sounds.beep);
             dy = -dy;
             // Remove the brick
             b.status = 0;
@@ -148,6 +150,7 @@ const StageGame = (
   }
 
   function drawGameOver() {
+    playSound(Sounds.lostlife);
     ctx.beginPath();
 
     ctx.globalCompositeOperation = 'destination-over';
@@ -180,6 +183,11 @@ const StageGame = (
     // ctx.shadowColor = 'rgba(0, 0, 0, 0)';
 
     ctx.closePath();
+  }
+
+  function playSound(sound: Sounds) {
+    const soundHandler = new Audio(sound);
+    soundHandler.play();
   }
 
   function getConfirmation(): boolean {
@@ -233,6 +241,7 @@ const StageGame = (
       dy = -dy;
     } else if (y + dy > height - ballRadius) {
       if (x > paddleX && x < paddleX + paddleWidth) {
+        playSound(Sounds.boop);
         dy = -dy;
       } else {
         console.log('trigger getConfirmation', x, y);
