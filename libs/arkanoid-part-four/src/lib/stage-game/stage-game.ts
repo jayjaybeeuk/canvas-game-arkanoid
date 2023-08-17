@@ -11,6 +11,12 @@ const StageGame = (
   //global
   let isPaused = false;
   let canPause = false;
+  let globalDebug = '';
+
+  // Game
+  const difficulty = 1;
+  const level = 1;
+  globalDebug = `difficulty:${difficulty}, level:${level}`;
 
   //Define canvas
   let x: number;
@@ -147,6 +153,13 @@ const StageGame = (
     ctx.fillText(text, x - textWidth / 2, y);
   }
 
+  function drawDebug() {
+    ctx.font = '16px Arial';
+    ctx.fillStyle = colours.blue;
+    const textWidth = ctx.measureText(globalDebug).width;
+    ctx.fillText(globalDebug, width - textWidth, height - 20);
+  }
+
   function drawGameOver() {
     ctx.beginPath();
 
@@ -218,7 +231,7 @@ const StageGame = (
   }
 
   function draw() {
-    // console.log('Ball position ', dx, dy, x, y);
+    console.log('Ball position ', dx, dy, x, y);
 
     // Clear canvas before redraw
     ctx.clearRect(0, 0, width, height);
@@ -253,6 +266,7 @@ const StageGame = (
     drawScore();
     drawLives();
     collisionDetection();
+    drawDebug();
 
     //Move ball
     x += dx;
